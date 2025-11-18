@@ -7,16 +7,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/properties")
 @RequiredArgsConstructor
 public class PropertyController {
+
     private final PropertyService propertyService;
 
     @PostMapping
-    public ResponseEntity<PropertyResponse> createProperty(@RequestBody PropertyRequest request) {
+    public ResponseEntity<PropertyResponse> createProperty(@RequestBody @Valid PropertyRequest request) {
         return ResponseEntity.ok(propertyService.createProperty(request));
     }
 
@@ -32,7 +34,7 @@ public class PropertyController {
 
     @PutMapping("/{id}")
     public ResponseEntity<PropertyResponse> updateProperty(@PathVariable Long id,
-                                                           @RequestBody PropertyRequest request) {
+                                                           @RequestBody @Valid PropertyRequest request) {
         return ResponseEntity.ok(propertyService.updateProperty(id, request));
     }
 
@@ -40,5 +42,10 @@ public class PropertyController {
     public ResponseEntity<Void> deleteProperty(@PathVariable Long id) {
         propertyService.deleteProperty(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/category/{categoryName}")
+    public ResponseEntity<List<PropertyResponse>> getByCategory(@PathVariable String categoryName) {
+        return ResponseEntity.ok(propertyService.getPropertiesByCategory(categoryName));
     }
 }

@@ -17,6 +17,7 @@ public class CategoryMapper {
         Category category = new Category();
         category.setName(request.getName());
         category.setDescription(request.getDescription());
+        category.setImageUrl(request.getImageUrl());
         return  category;
     }
 
@@ -29,6 +30,7 @@ public class CategoryMapper {
         response.setId(category.getId());
         response.setName(category.getName());
         response.setDescription(category.getDescription());
+        response.setImageUrl(category.getImageUrl());
 //        response.setCreatedAt(category.setCreatedAt(LocalDateTime.now()));
         response.setUpdatedAt(String.valueOf(category.getUpdatedAt()));
         return response;

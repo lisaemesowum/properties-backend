@@ -9,6 +9,26 @@ CREATE TABLE categories (
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP DEFAULT NOW()
 );
+-- Insert initial categories
+INSERT INTO categories (name, description)
+VALUES
+    ('House', 'All types of houses')
+ON CONFLICT (name) DO NOTHING;
+
+INSERT INTO categories (name, description)
+VALUES
+    ('Apartment', 'All types of apartments')
+ON CONFLICT (name) DO NOTHING;
+
+INSERT INTO categories (name, description)
+VALUES
+    ('Land', 'All types of apartments')
+ON CONFLICT (name) DO NOTHING;
+
+INSERT INTO categories (name, description)
+VALUES
+    ('Office', 'All types of apartments')
+ON CONFLICT (name) DO NOTHING;
 
 -- ------------------------
 -- Table: properties

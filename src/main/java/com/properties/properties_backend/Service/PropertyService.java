@@ -78,4 +78,15 @@ public class PropertyService {
         Property updatedProperty = propertyRepository.save(property);
         return propertyMapper.toResponse(updatedProperty);
     }
+
+
+    public List<PropertyResponse> getPropertiesByCategory(String categoryName) {
+        List<Property> properties = propertyRepository.findByCategory_Name(categoryName);
+
+        return properties.stream()
+                .map(propertyMapper::toResponse)
+                .collect(Collectors.toList());
+    }
+
 }
+

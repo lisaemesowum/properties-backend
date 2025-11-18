@@ -21,6 +21,7 @@ public class Category {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+    private String imageUrl;
 
     @PrePersist
     protected void onCreate() {

@@ -12,6 +12,7 @@ public class PropertyRequest {
 
     private String description;
 
+    @NotBlank(message = "Category name is required")
     private String CategoryName;
 
     private Double price;
